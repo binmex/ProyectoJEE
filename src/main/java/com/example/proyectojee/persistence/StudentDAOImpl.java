@@ -70,20 +70,17 @@ public class StudentDAOImpl implements StudentDAO {
         try (Connection connection =
                      DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();
-             ResultSet result = statement.executeQuery("select * from student");
+             ResultSet result = statement.executeQuery("select * from parcticipants");
         ) {
             while (result.next()) {
                 String code = result.getString("code");
                 String surName = result.getString("surname");
-                String name = result.getString("name");
+                String name = result.getString("nombre");
                 String edad = result.getString("edad");
-                String modo = result.getString("modo");
-                String disciplina = result.getString("disicplina");
+                String modo = result.getString("mode");
+                String disciplina = result.getString("discipline");
                 String evento = result.getString("evento");
-                String posicion = result.getString("posicion");
-
-
-                double subsidy = Double.valueOf(result.getString("subsidy"));
+                String posicion = result.getString("position");
 
                 students.add(new Student(code, surName, name, edad, modo, disciplina, evento, posicion));
             }

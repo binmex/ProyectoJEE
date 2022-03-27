@@ -13,8 +13,8 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
+    private final StudentDAOFactoty factory = new StudentDAOFactoty();
     private String message;
-
 
     public void init() throws ServletException {
 
@@ -22,14 +22,13 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/json");
+        String code=request.getParameter("code");
+        if(code.equalsIgnoreCase("1")){
+            StudentDAOImpl student=new StudentDAOImpl();
+            ResultSet result= (ResultSet) student.getAllStudents();
 
-        String code = request.getParameter("code");
-        if (code.equalsIgnoreCase("1")) {
-            StudentDAOImpl student = new StudentDAOImpl();
-            ResultSet result = (ResultSet) student.getAllStudents();
-
-            try (PrintWriter out = response.getWriter()) {
-                out.println(result);
+            try( PrintWriter out = response.getWriter()){
+                out.println( result);
             }
 
         }
@@ -37,9 +36,6 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Student estudiante = new Student();
-
-
         response.setContentType("text/json");
         String id = request.getParameter("id");
         String name = request.getParameter("name");
@@ -49,20 +45,15 @@ public class HelloServlet extends HttpServlet {
         String mode = request.getParameter("mode");
         String event = request.getParameter("evento");
         String position = request.getParameter("position");
-        estudiante.setCode(id);
-        estudiante.setName(name);
-        estudiante.setSurname(surname);
-        estudiante.setEdad(edad);
-        estudiante.setDisciplina(discipline);
-        estudiante.setModo(mode);
-        estudiante.setEvento(event);
-        estudiante.setPosicion(position);
-        //envio de datos
-        StudentDAOImpl send = new StudentDAOImpl();
-        send.addStudent(estudiante);
-        try (PrintWriter out = response.getWriter()) {
-            out.println(id + " " + surname + " " + name + " " + edad + " " + discipline + " " + mode + " " + event + " " + position+" prueba: "+estudiante.getEdad());
+
+
+
+        try( PrintWriter out = response.getWriter()){
+            out.println( id +" "+ surname +" "+ name +" "+ edad+" "+discipline+" "+mode+" "+event+" "+position);
+            Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
+            factory.createStudentDAO().addStudent(s);
         }
+
     }
 
     public void destroy() {

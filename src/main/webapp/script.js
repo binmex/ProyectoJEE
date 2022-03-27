@@ -4,7 +4,7 @@ var prod2, data3;
 /*
 * funcion de inicio del metodo
 * */
-function begin() {
+/*function begin() {
     const xhr = new XMLHttpRequest();
     //activamos el modo de asincrono con true
     xhr.open('GET', 'hello-servlet?code=1', true);
@@ -120,15 +120,15 @@ function funtionData(id, name, surname, position, discipline, mode, event) {
 * funciones para crear participante
 * ======================================================================
 * */
-$('#Crear').click(function (){
-    var id =document.getElementById('inputEmail4').value;
-    var nombre=document.getElementById('inputPassword4').value;
-    var apellido=document.getElementById('inputAddress').value;
-    var edad=document.getElementById('inputAddress2').value;
-    var modo=document.getElementById('inputModo').value;
-    var disciplina=document.getElementById('inputDiscipline').value;
-    var evento=document.getElementById('inputEvent').value;
-    var posicion=document.getElementById('inputposicion').value;
+    document.getElementById('Crear').addEventListener('click',function (){
+        var id =document.getElementById('inputEmail4').value;
+        var nombre=document.getElementById('inputPassword4').value;
+        var apellido=document.getElementById('inputAddress').value;
+        var edad=document.getElementById('inputAddress2').value;
+        var modo=document.getElementById('inputModo').value;
+        var disciplina=document.getElementById('inputDiscipline').value;
+        var evento=document.getElementById('inputEvent').value;
+        var posicion=document.getElementById('inputposicion').value;
 
         const xhr = new XMLHttpRequest();
         xhr.open('post','hello-servlet',true)
@@ -140,10 +140,8 @@ $('#Crear').click(function (){
         const data = `id=${id}&name=${nombre}&surname=${apellido}&edad=${edad}&discipline=${disciplina}&mode=${modo}&evento=${evento}&position=${posicion}`;
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send( data )
-
         alert("Elemento Agregado")
-
-})
+    })
 
 /**
  * ===================================================
