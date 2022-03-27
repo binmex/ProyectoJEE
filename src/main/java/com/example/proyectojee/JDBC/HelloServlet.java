@@ -1,5 +1,6 @@
 package com.example.proyectojee.JDBC;
 
+import com.example.proyectojee.logic.Student;
 import com.example.proyectojee.persistence.StudentDAO;
 import com.example.proyectojee.persistence.StudentDAOFactoty;
 import com.example.proyectojee.persistence.StudentDAOImpl;
@@ -14,19 +15,21 @@ import javax.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
     private String message;
 
+
     public void init() throws ServletException {
 
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/json");
-        String code=request.getParameter("code");
-        if(code.equalsIgnoreCase("1")){
-            StudentDAOImpl student=new StudentDAOImpl();
-            ResultSet result= (ResultSet) student.getAllStudents();
 
-            try( PrintWriter out = response.getWriter()){
-                out.println( result);
+        String code = request.getParameter("code");
+        if (code.equalsIgnoreCase("1")) {
+            StudentDAOImpl student = new StudentDAOImpl();
+            ResultSet result = (ResultSet) student.getAllStudents();
+
+            try (PrintWriter out = response.getWriter()) {
+                out.println(result);
             }
 
         }
@@ -34,6 +37,9 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Student estudiante = new Student();
+
+
         response.setContentType("text/json");
         String id = request.getParameter("id");
         String name = request.getParameter("name");
@@ -43,10 +49,22 @@ public class HelloServlet extends HttpServlet {
         String mode = request.getParameter("mode");
         String event = request.getParameter("evento");
         String position = request.getParameter("position");
-        try( PrintWriter out = response.getWriter()){
-            out.println( id +" "+ surname +" "+ name +" "+ edad+" "+discipline+" "+mode+" "+event+" "+position);
+        estudiante.setCode(id);
+        estudiante.setName(name);
+        estudiante.setSurname(surname);
+        estudiante.setEdad(edad);
+        estudiante.setDisciplina(discipline);
+        estudiante.setModo(mode);
+        estudiante.setEvento(event);
+        estudiante.setPosicion(position);
+        //envio de datos
+        StudentDAOImpl send = new StudentDAOImpl();
+        send.addStudent(estudiante);
+        try (PrintWriter out = response.getWriter()) {
+            out.println(id + " " + surname + " " + name + " " + edad + " " + discipline + " " + mode + " " + event + " " + position+" prueba: "+estudiante.getEdad());
         }
     }
+
     public void destroy() {
     }
 }

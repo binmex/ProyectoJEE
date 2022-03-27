@@ -4,19 +4,19 @@ var prod2, data3;
 /*
 * funcion de inicio del metodo
 * */
-/*function begin() {
+function begin() {
     const xhr = new XMLHttpRequest();
     //activamos el modo de asincrono con true
     xhr.open('GET', 'hello-servlet?code=1', true);
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            prod2 = xhr.responseText;
-            alert (typeof prod2)
-            //prod2.forEach(prods => document.getElementById("participants").add(new Option(prods.name, prods.id)))
+            prod2 = JSON.parse(xhr.responseText);
+            alert (typeof prod2);
+            prod2.forEach(prods => document.getElementById("participants").add(new Option(prods.name, prods.id)))
         }
     };
     xhr.send(null);
-}*/
+}
 
 /*
 participants variable que toma lo del select

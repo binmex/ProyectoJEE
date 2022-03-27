@@ -2,13 +2,14 @@ package com.example.proyectojee.persistence;
 
 import com.example.proyectojee.logic.Student;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost/participantes";
+    private static final String URL = "jdbc:mysql://localhost/estudiantes";
     private static final String USER = "participantes";
     private static final String PASSWD = "binylau";
 
@@ -34,7 +35,10 @@ public class StudentDAOImpl implements StudentDAO {
             String posicion = student.getPosicion();
 
 
-            final String query = "INSERT INTO student VALUES(" + "'" + code + "','" + name + "','" + surName + "','" + edad + "','" + disciplina + "','" + modo+ "','" + evento + "','" + posicion + "')";
+            JOptionPane.showMessageDialog(null,code+" "+surName);
+
+
+            final String query = "INSERT INTO parcticipants VALUES(" + "'" + code + "','" + name + "','" + surName + "','" + edad + "','" + disciplina + "','" + modo+ "','" + evento + "','" + posicion + "')";
 
             System.out.println(query);
 

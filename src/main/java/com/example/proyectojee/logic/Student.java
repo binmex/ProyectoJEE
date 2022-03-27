@@ -10,6 +10,9 @@ public class Student {
     private String evento;
     private String posicion;
 
+    public Student() {
+    }
+
     public Student(String code, String surname, String name, String edad, String modo, String disciplina, String evento, String posicion) {
         this.code = code;
         this.surname = surname;
