@@ -8,9 +8,9 @@ import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost/uptc";
-    private static final String USER = "student";
-    private static final String PASSWD = "UPTC1234";
+    private static final String URL = "jdbc:mysql://localhost/participantes";
+    private static final String USER = "participantes";
+    private static final String PASSWD = "binylau";
 
     @Override
     public void addStudent(Student student) {
@@ -34,7 +34,7 @@ public class StudentDAOImpl implements StudentDAO {
             String posicion = student.getPosicion();
 
 
-            final String query = "INSERT INTO student VALUES(" + "'" + code + "','" + surName + "','" + name + "','" + edad + "','" + modo + "','" + disciplina + "','" + evento + "','" + posicion + "')";
+            final String query = "INSERT INTO student VALUES(" + "'" + code + "','" + name + "','" + surName + "','" + edad + "','" + disciplina + "','" + modo+ "','" + evento + "','" + posicion + "')";
 
             System.out.println(query);
 
