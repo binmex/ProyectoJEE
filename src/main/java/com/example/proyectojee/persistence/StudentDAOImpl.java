@@ -8,9 +8,9 @@ import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost/uptc";
-    private static final String USER = "student";
-    private static final String PASSWD = "UPTC1234";
+    private static final String URL = "jdbc:mysql://localhost/participantes";
+    private static final String USER = "participantes";
+    private static final String PASSWD = "binylau";
 
     @Override
     public void addStudent(Student student) {
