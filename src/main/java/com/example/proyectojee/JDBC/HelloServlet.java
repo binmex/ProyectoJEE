@@ -1,4 +1,4 @@
-package com.example.proyectojee;
+package com.example.proyectojee.JDBC;
 
 import java.io.*;
 import javax.servlet.http.*;
