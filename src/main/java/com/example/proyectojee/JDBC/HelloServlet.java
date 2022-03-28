@@ -35,6 +35,9 @@ public class HelloServlet extends HttpServlet {
                 out.println(stAux);
             }
         }
+        if (request.getParameter("op").equals("2")){
+
+        }
     }
 
 
@@ -47,22 +50,30 @@ public class HelloServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/json");
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String edad = request.getParameter("edad");
-        String discipline = request.getParameter("discipline");
-        String mode = request.getParameter("mode");
-        String event = request.getParameter("evento");
-        String position = request.getParameter("position");
+        //if para agregar
+        if (request.getParameter("op").equals("1")){
+            response.setContentType("text/json");
+            String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String surname = request.getParameter("surname");
+            String edad = request.getParameter("edad");
+            String discipline = request.getParameter("discipline");
+            String mode = request.getParameter("mode");
+            String event = request.getParameter("evento");
+            String position = request.getParameter("position");
 
-        Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
-        factory.createStudentDAO().addStudent(s);
+            Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
+            factory.createStudentDAO().addStudent(s);
 
-        try( PrintWriter out = response.getWriter()){
-            out.println( id +" "+ surname +" "+ name +" "+ edad+" "+discipline+" "+mode+" "+event+" "+position);
+            try( PrintWriter out = response.getWriter()){
+                out.println( id +" "+ surname +" "+ name +" "+ edad+" "+discipline+" "+mode+" "+event+" "+position);
+            }
         }
+        if (request.getParameter("op").equals("2")){
+
+
+        }
+
 
     }
 

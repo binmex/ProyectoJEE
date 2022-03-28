@@ -94,11 +94,6 @@ function funtionData(id, name, surname, position, discipline, mode, event) {
     div.appendChild(row)
 }
 
-/**
- * obtener valor codigo de la seleccion
- */
-
-
 /*
 *========================================================================
 * funciones para crear participante
@@ -106,7 +101,7 @@ function funtionData(id, name, surname, position, discipline, mode, event) {
 * */
 
 const xhr = new XMLHttpRequest();
-xhr.open('post', 'hello-servlet', true)
+xhr.open('post', 'hello-servlet?op=1', true)
 xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
         alert(xhr.responseText)
@@ -129,11 +124,11 @@ document.getElementById('Crear').addEventListener('click', function () {
     alert("Elemento Agregado")
 })
 
-/**
+/*
  * ===================================================
  * Funciones para Elminar perticipante
  * ===================================================
-
+ * */
 
  var arrayNombres;
  var codObten;
@@ -141,7 +136,7 @@ document.getElementById('Crear').addEventListener('click', function () {
 
  const xhr5 = new XMLHttpRequest();
 
- xhr5.open('GET', 'loadStudent.php', true);
+ xhr5.open('GET', 'hello-servlet?op=1', true);
  xhr5.onreadystatechange = () => {
     if (xhr5.readyState === 4 && xhr5.status === 200) {
         arrayNombres = JSON.parse(xhr5.responseText);
@@ -160,19 +155,18 @@ document.getElementById('Crear').addEventListener('click', function () {
     var envio = selectedOption.text
     arrayNombres.forEach((names)=>{
         if (names.name === envio){
-            codObten = names.id
-
+            codObten = names.code
+            alert(names.code)
         }
     })
     var send = "code="+codObten;
     $.ajax({
-        url: 'loadEliminar.php',
+        url: 'hello-servlet?op=2',
         type: 'POST',
         data: send
     })
     //alert(codObten)
     document.getElementById("form2").reset()
-
     begin();
 
 })
