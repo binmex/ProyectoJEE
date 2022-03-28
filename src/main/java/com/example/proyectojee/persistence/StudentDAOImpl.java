@@ -65,6 +65,7 @@ public class StudentDAOImpl implements StudentDAO {
                      DriverManager.getConnection(URL, USER, PASSWD);
         ) {
             Statement statement = connection.createStatement();
+            System.out.println("lo que llega: "+code);
             String query = "DELETE from parcticipants WHERE parcticipants . code=" + "'" + code + "'  ";
             statement.execute(query);
         } catch (SQLException throwables) {
