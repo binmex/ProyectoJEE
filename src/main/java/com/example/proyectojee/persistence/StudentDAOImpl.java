@@ -16,6 +16,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public void addStudent(Student student) {
         try {
+            //System.out.println("aqui estamos");
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -24,7 +25,7 @@ public class StudentDAOImpl implements StudentDAO {
                      DriverManager.getConnection(URL, USER, PASSWD);
         ) {
             Statement statement = connection.createStatement();
-
+            //System.out.println("aqui estamos 2");
             String code = student.getCode();
             String surName = student.getSurname();
             String name = student.getName();
@@ -33,9 +34,8 @@ public class StudentDAOImpl implements StudentDAO {
             String disciplina = student.getDisciplina();
             String evento = student.getEvento();
             String posicion = student.getPosicion();
-
-
-            JOptionPane.showMessageDialog(null,code+" "+surName);
+            //System.out.println(student.getCode());
+            //JOptionPane.showMessageDialog(null,code+" "+surName);
 
 
             final String query = "INSERT INTO parcticipants VALUES(" + "'" + code + "','" + name + "','" + surName + "','" + edad + "','" + disciplina + "','" + modo+ "','" + evento + "','" + posicion + "')";

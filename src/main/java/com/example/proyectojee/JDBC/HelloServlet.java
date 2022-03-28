@@ -46,12 +46,13 @@ public class HelloServlet extends HttpServlet {
         String event = request.getParameter("evento");
         String position = request.getParameter("position");
 
-
+        Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
+        factory.createStudentDAO().addStudent(s);
 
         try( PrintWriter out = response.getWriter()){
             out.println( id +" "+ surname +" "+ name +" "+ edad+" "+discipline+" "+mode+" "+event+" "+position);
-            Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
-            factory.createStudentDAO().addStudent(s);
+            //Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
+            //factory.createStudentDAO().addStudent(s);
         }
 
     }

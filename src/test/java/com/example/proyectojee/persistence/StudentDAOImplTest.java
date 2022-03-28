@@ -9,9 +9,10 @@ class StudentDAOImplTest {
     private final StudentDAOFactoty factory = new StudentDAOFactoty();
     @Test
     void addStudent() {
-        Student s = new Student("25", "bayona","laura","19","single","futbolt","intercursos","25");
+        Student s = new Student("63", "set","Diego","19","single","futbolt","intercursos","25");
+        //Student d = new Student("007", "Aguilar","Robinson","19","single","futbolt","nacionales","1");
         factory.createStudentDAO().addStudent(s);
-
+        //factory.createStudentDAO().addStudent(d);
     }
 
     @Test

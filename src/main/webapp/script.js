@@ -111,37 +111,35 @@ function funtionData(id, name, surname, position, discipline, mode, event) {
  */
 
 
-
-
-
-
 /*
 *========================================================================
 * funciones para crear participante
 * ======================================================================
 * */
-    document.getElementById('Crear').addEventListener('click',function (){
-        var id =document.getElementById('inputEmail4').value;
-        var nombre=document.getElementById('inputPassword4').value;
-        var apellido=document.getElementById('inputAddress').value;
-        var edad=document.getElementById('inputAddress2').value;
-        var modo=document.getElementById('inputModo').value;
-        var disciplina=document.getElementById('inputDiscipline').value;
-        var evento=document.getElementById('inputEvent').value;
-        var posicion=document.getElementById('inputposicion').value;
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('post','hello-servlet',true)
-        xhr.onreadystatechange = ()=>{
-            if( xhr.readyState === 4 && xhr.status === 200 ){
-                alert(xhr.responseText)
-            }
-        }
-        const data = `id=${id}&name=${nombre}&surname=${apellido}&edad=${edad}&discipline=${disciplina}&mode=${modo}&evento=${evento}&position=${posicion}`;
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send( data )
-        alert("Elemento Agregado")
-    })
+const xhr = new XMLHttpRequest();
+xhr.open('post', 'hello-servlet', true)
+xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        alert(xhr.responseText)
+    }
+}
+document.getElementById('Crear').addEventListener('click', function () {
+    var id = document.getElementById('inputEmail4').value;
+    var nombre = document.getElementById('inputPassword4').value;
+    var apellido = document.getElementById('inputAddress').value;
+    var edad = document.getElementById('inputAddress2').value;
+    var modo = document.getElementById('inputModo').value;
+    var disciplina = document.getElementById('inputDiscipline').value;
+    var evento = document.getElementById('inputEvent').value;
+    var posicion = document.getElementById('inputposicion').value;
+
+
+    const data = `id=${id}&name=${nombre}&surname=${apellido}&edad=${edad}&discipline=${disciplina}&mode=${modo}&evento=${evento}&position=${posicion}`;
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(data)
+    alert("Elemento Agregado")
+})
 
 /**
  * ===================================================
@@ -149,23 +147,23 @@ function funtionData(id, name, surname, position, discipline, mode, event) {
  * ===================================================
 
 
-var arrayNombres;
-var codObten;
+ var arrayNombres;
+ var codObten;
 
 
-const xhr5 = new XMLHttpRequest();
+ const xhr5 = new XMLHttpRequest();
 
-xhr5.open('GET', 'loadStudent.php', true);
-xhr5.onreadystatechange = () => {
+ xhr5.open('GET', 'loadStudent.php', true);
+ xhr5.onreadystatechange = () => {
     if (xhr5.readyState === 4 && xhr5.status === 200) {
         arrayNombres = JSON.parse(xhr5.responseText);
         //alert(arrayNombres)
     }
 };
-xhr5.send(null)
+ xhr5.send(null)
 
 
-document.getElementById('deleteButton').addEventListener('click',function () {
+ document.getElementById('deleteButton').addEventListener('click',function () {
     //obtener valor del selector
     //cargamos variable con el archivo
     const sel = document.getElementById('participants')
@@ -191,13 +189,13 @@ document.getElementById('deleteButton').addEventListener('click',function () {
 
 })
 
-/**
+ /**
  * ================================================
  * Funciones de validaciones
  * ================================================
 
 
-function validate(){
+ function validate(){
     var arrayStudent;
     var codeCom =document.getElementById('inputEmail4').value;
 
