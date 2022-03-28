@@ -64,14 +64,21 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<>();
+    public ArrayList<Student> getAllStudents() {
 
-        try (Connection connection =
-                     DriverManager.getConnection(URL, USER, PASSWD);
+        try {
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<Student> participants = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();
-             ResultSet result = statement.executeQuery("select * from parcticipants");
+             ResultSet result = statement.executeQuery("select * from parcticipants")
         ) {
+
             while (result.next()) {
                 String code = result.getString("code");
                 String surName = result.getString("surname");
@@ -82,15 +89,17 @@ public class StudentDAOImpl implements StudentDAO {
                 String evento = result.getString("evento");
                 String posicion = result.getString("position");
 
-                students.add(new Student(code, surName, name, edad, modo, disciplina, evento, posicion));
+                Student participant = new Student(code, surName, name, edad, modo, disciplina, evento, posicion );
+                participants.add(participant);
             }
-
-            return students;
+            return participants;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return null;
+
     }
 
     @Override

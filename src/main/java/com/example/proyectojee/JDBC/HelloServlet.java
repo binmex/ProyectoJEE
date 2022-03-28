@@ -4,9 +4,11 @@ import com.example.proyectojee.logic.Student;
 import com.example.proyectojee.persistence.StudentDAO;
 import com.example.proyectojee.persistence.StudentDAOFactoty;
 import com.example.proyectojee.persistence.StudentDAOImpl;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -21,19 +23,28 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/json");
-        String code=request.getParameter("code");
-        if(code.equalsIgnoreCase("1")){
-            StudentDAOImpl student=new StudentDAOImpl();
-            ResultSet result= (ResultSet) student.getAllStudents();
-
-            try( PrintWriter out = response.getWriter()){
-                out.println( result);
+        Gson gson = new Gson();
+        if (request.getParameter("op").equals("1")) {
+            StudentDAOFactoty factory = new StudentDAOFactoty();
+            response.setContentType("text/json");
+            ArrayList<Student> participants = factory.createStudentDAO().getAllStudents();
+            String stAux = gson.toJson(participants);
+            try (
+                    PrintWriter out = response.getWriter();
+            ) {
+                out.println(stAux);
             }
-
         }
     }
 
+
+    /**
+     * Metodo para agregar participantes al MYSQL ¡no tocar!, por favor me llevo 3 dias.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/json");
@@ -51,8 +62,6 @@ public class HelloServlet extends HttpServlet {
 
         try( PrintWriter out = response.getWriter()){
             out.println( id +" "+ surname +" "+ name +" "+ edad+" "+discipline+" "+mode+" "+event+" "+position);
-            //Student s = new Student(id, surname,name,edad,mode,discipline,event,position);
-            //factory.createStudentDAO().addStudent(s);
         }
 
     }

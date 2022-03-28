@@ -1,5 +1,7 @@
 package com.example.proyectojee.persistence;
 import com.example.proyectojee.logic.Student;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface StudentDAO extends java.lang.AutoCloseable{
@@ -7,5 +9,5 @@ public interface StudentDAO extends java.lang.AutoCloseable{
     void updateStudent(Student student);
     void delete( String code);
     Student findByCode(String code);
-    List<Student> getAllStudents();
+    ArrayList<Student> getAllStudents();
 }

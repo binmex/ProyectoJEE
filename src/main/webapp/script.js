@@ -1,47 +1,35 @@
 var prod2, data3;
 
-//begin();
+
 /*
 * funcion de inicio del metodo
 * */
-/*function begin() {
-    const xhr = new XMLHttpRequest();
+function begin() {
+    //alert("ya se cargo")
+    const xhr2 = new XMLHttpRequest();
     //activamos el modo de asincrono con true
-    xhr.open('GET', 'hello-servlet?code=1', true);
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            prod2 = JSON.parse(xhr.responseText);
-            alert (typeof prod2);
+    xhr2.open('get', 'hello-servlet?op=1', true);
+    xhr2.onreadystatechange = () => {
+        if (xhr2.readyState === 4 && xhr2.status === 200) {
+            prod2 = JSON.parse(xhr2.responseText);
             prod2.forEach(prods => document.getElementById("participants").add(new Option(prods.name, prods.id)))
         }
-    };
-    xhr.send(null);
+    }
+    xhr2.send(null);
 }
 
 /*
 participants variable que toma lo del select
 * Orderparti : variable participantes ordenada
 * **/
-/*const participants = document.getElementById("participants");
-participants.addEventListener('change', function ListData () {
+const participants = document.getElementById("participants");
+participants.addEventListener('change', function () {
     var selectedOption = this.options[participants.selectedIndex];
     //ordena segun el nombre
     //const Orderparti = prod2.sort((participant1, participant2) => participant1.name.localeCompare(participant2.name))
     prod2.forEach((participant) => {
         if (participant.name == selectedOption.text) {
-            if (participant.event == 1) {
-                evento = "intercursos"
-            }
-            if (participant.event == 2) {
-                evento = "intercolegiados"
-            }
-            if (participant.event == 3) {
-                evento = "nacionales"
-            }
-            if (participant.event == 4) {
-                evento = "departametales"
-            }
-            funtionData(participant.id, participant.name, participant.surname, participant.position, participant.discipline, participant.mode, evento);
+            funtionData(participant.code, participant.name, participant.surname, participant.posicion, participant.disciplina, participant.modo, participant.evento);
         }
     });
 });
@@ -219,3 +207,4 @@ document.getElementById('Crear').addEventListener('click', function () {
     })
 
 }*/
+begin();
