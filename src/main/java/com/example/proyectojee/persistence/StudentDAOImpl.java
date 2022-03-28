@@ -56,6 +56,23 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public void delete(String code) {
 
+        try {
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection connection =
+                     DriverManager.getConnection(URL, USER, PASSWD);
+        ) {
+            Statement statement = connection.createStatement();
+            String query = "DELETE from parcticipants WHERE parcticipants . code=" + "'" + code + "'  ";
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+
     }
 
     @Override

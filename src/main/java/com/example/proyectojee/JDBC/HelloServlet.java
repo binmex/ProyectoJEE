@@ -70,8 +70,9 @@ public class HelloServlet extends HttpServlet {
             }
         }
         if (request.getParameter("op").equals("2")){
-
-
+            response.setContentType("text/json");
+            String id = request.getParameter("code");
+            factory.createStudentDAO().delete(id);
         }
 
 
