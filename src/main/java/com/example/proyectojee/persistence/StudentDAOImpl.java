@@ -80,8 +80,8 @@ public class StudentDAOImpl implements StudentDAO {
             Statement statement = connection.createStatement();
             String id = student.getCode();
             //falta revisar bien esta sintasix
-            final String query = "UPDATE parcticipants SET nombre = student.getName() WHERE code= student.getCode";
-            statement.execute(query);
+            //final String query = "UPDATE parcticipants SET nombre = student.getName() WHERE code= student.getCode";
+            //statement.execute(query);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
