@@ -213,6 +213,12 @@ document.getElementById("updateButton").addEventListener("click",function () {
             document.getElementById('inputposicion').value = names.posicion;
         }
     })
+    var send = "code=" + codUpdate;
+    $.ajax({
+        url: 'hello-servlet?op=2',
+        type: 'POST',
+        data: send
+    })
 })
 
 
