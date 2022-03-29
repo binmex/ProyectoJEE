@@ -29,12 +29,12 @@ participants.addEventListener('change', function () {
     //const Orderparti = prod2.sort((participant1, participant2) => participant1.name.localeCompare(participant2.name))
     prod2.forEach((participant) => {
         if (participant.name == selectedOption.text) {
-            funtionData(participant.code, participant.name, participant.surname, participant.posicion, participant.disciplina, participant.modo, participant.evento);
+            funtionData(participant.code, participant.name, participant.surname, participant.posicion, participant.disciplina, participant.modo, participant.evento,participant.edad);
         }
     });
 });
 
-function funtionData(id, name, surname, position, discipline, mode, event) {
+function funtionData(id, name, surname, position, discipline, mode, event, edad) {
     var div = document.getElementById("listTable");
     //creando etiqueta para agregar filas (row)
     var row = document.createElement('tr')
@@ -72,6 +72,13 @@ function funtionData(id, name, surname, position, discipline, mode, event) {
     col2 = document.createElement('td')
     //en con esta el numero primo
     col2.appendChild(document.createTextNode(mode))
+    //agregamos columna  a la fila
+    row.appendChild(col2)
+
+    //creamos un nuevo espacio de columna
+    col2 = document.createElement('td')
+    //en con esta el numero primo
+    col2.appendChild(document.createTextNode(edad))
     //agregamos columna  a la fila
     row.appendChild(col2)
 
