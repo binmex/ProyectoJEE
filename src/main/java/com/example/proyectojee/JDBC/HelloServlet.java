@@ -13,7 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
+/**
+ * nombre de la clase y el valor del servlrt
+ */
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
+/**
+ * Clase Servlet extendida de HttpServlet
+ */
 public class HelloServlet extends HttpServlet {
     private final StudentDAOFactoty factory = new StudentDAOFactoty();
     private String message;
@@ -22,6 +28,12 @@ public class HelloServlet extends HttpServlet {
 
     }
 
+    /**
+     * Metodo doGet para obtener todos los datos
+     * @param request Variable que obtine los datos del HHTport
+     * @param response Variable que obtiene datso
+     * @throws IOException Excepcion por la implementacion del metodo
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
         if (request.getParameter("op").equals("1")) {
@@ -43,8 +55,8 @@ public class HelloServlet extends HttpServlet {
 
     /**
      * Metodo para agregar participantes al MYSQL ¡no tocar!, por favor me llevo 3 dias.
-     * @param request
-     * @param response
+     * @param request variable con informacion revogida del JS
+     * @param response variable con informacion revogida del JS
      * @throws ServletException
      * @throws IOException
      */

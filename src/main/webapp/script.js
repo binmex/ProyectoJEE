@@ -229,6 +229,8 @@ document.getElementById("updateButton").addEventListener("click",function () {
 })
 
 
+
+
 /**
  * ================================================
  * Funciones de validaciones

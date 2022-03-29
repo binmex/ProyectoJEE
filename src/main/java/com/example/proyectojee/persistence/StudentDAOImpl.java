@@ -8,11 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
+    /**
+     * variable que inicializa el driver de la conecion con el mysql
+     */
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    /**
+     * variable que indica la ubicacion de la base de datos
+     */
     private static final String URL = "jdbc:mysql://localhost/estudiantes";
+    /**
+     * variable del usuario de la base de datos
+     */
     private static final String USER = "participantes";
+    /**
+     * variable que contiene la contraseña de la base de datos
+     */
     private static final String PASSWD = "binylau";
 
+    /**
+     * Metodo que agrga datos a la base de datos MYSQL
+     * @param student   Objeto de tipo estudiante con la informacion que se desea agregar a la base de datos
+     */
     @Override
     public void addStudent(Student student) {
         try {
@@ -48,14 +64,35 @@ public class StudentDAOImpl implements StudentDAO {
         }
     }
 
+    /**
+     * Metodo para modificar un objeto ya existente en la base de datos
+     * @param student objeto que se desea modificar en la base de datos MYSQL
+     */
     @Override
     public void updateStudent(Student student) {
+        try {
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD)) {
+            Statement statement = connection.createStatement();
+            String id = student.getCode();
+            //falta revisar bien esta sintasix
+            final String query = "UPDATE parcticipants SET nombre = student.getName() WHERE code= student.getCode";
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
+    /**
+     * Metodo para eliminar datos de la base de datos MYSQL
+     * @param code identificador o key conla que se reconoce el elemento a eliminar
+     */
     @Override
     public void delete(String code) {
-
         try {
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
@@ -71,13 +108,22 @@ public class StudentDAOImpl implements StudentDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
-
     }
 
+    /**
+     * Metodo para buscar un usuario con la key por la que se identifique
+     * @param code Key con la que se hace referencia al elemton a buscar
+     * @return en caso de encontrar el elmento retorna el objeto en caso contrario retorna null
+     */
     @Override
     public Student findByCode(String code) {
+        if (getAllStudents()!= null){
+            for (Student st: getAllStudents()) {
+                if (st.getCode().equals(code)){
+                    return st;
+                }
+            }
+        }
         return null;
     }
 
